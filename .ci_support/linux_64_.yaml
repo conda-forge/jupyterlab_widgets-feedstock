@@ -1,0 +1,6 @@
+channel_sources:
+- conda-forge/label/jupyterlab_rc,conda-forge/label/jupyterlab_server_rc,conda-forge,defaults
+channel_targets:
+- conda-forge jupyterlab_widgets_rc
+docker_image:
+- condaforge/linux-anvil-comp7
