@@ -1,5 +1,5 @@
-{% set version = "1.0.0a5" %}
-{% set sha256 = "6435eb4df6f9c63533dadd9d2d4cca280bf28a22f0b94627b6ddbcdea6db2384" %}
+{% set version = "1.0.0a6" %}
+{% set sha256 = "d96f219cb3a6832384a324e36a603c6c6462a878577e11f8b5256bb73c00b2fb" %}
 
 package:
   name: jupyterlab_widgets
@@ -21,6 +21,8 @@ requirements:
 
   run:
     - python >=3.6
+
+  run_constrained:
     - jupyterlab >=3.0.0rc4,<4
 
 test:
