@@ -1,5 +1,5 @@
-{% set version = "1.0.0" %}
-{% set sha256 = "5c1a29a84d3069208cb506b10609175b249b6486d6b1cbae8fcde2a11584fb78" %}
+{% set version = "1.0.1" %}
+{% set sha256 = "f94fb7fa1ddc8668e3f98d67a97cabe322e8d04b78b9eb988c7fde415d7a02df" %}
 
 package:
   name: jupyterlab_widgets
@@ -9,7 +9,7 @@ source:
   url: https://pypi.io/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
