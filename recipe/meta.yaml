@@ -1,5 +1,5 @@
-{% set version = "1.1.1" %}
-{% set sha256 = "67d0ef1e407e0c42c8ab60b9d901cd7a4c68923650763f75bf17fb06c1943b79" %}
+{% set version = "3.0.0rc0" %}
+{% set sha256 = "632903bd1b74d5db351839f72df6374cb5df6fcf23cb795e534a0c675761ae78" %}
 
 package:
   name: jupyterlab_widgets
@@ -16,11 +16,14 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python >=3.7
     - jupyter-packaging
 
   run:
-    - python >=3.6
+    - python >=3.7
+
+  run_constrained:
+    - jupyterlab >=3,<4
 
 test:
   imports:
@@ -40,4 +43,5 @@ extra:
   recipe-maintainers:
     - jasongrout
     - SylvainCorlay
+    - martinRenou
     - jtpio
