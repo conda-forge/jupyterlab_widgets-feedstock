@@ -144,6 +144,7 @@ Feedstock Maintainers
 =====================
 
 * [@SylvainCorlay](https://github.com/SylvainCorlay/)
+* [@bollwyvl](https://github.com/bollwyvl/)
 * [@jasongrout](https://github.com/jasongrout/)
 * [@jtpio](https://github.com/jtpio/)
 * [@martinRenou](https://github.com/martinRenou/)
