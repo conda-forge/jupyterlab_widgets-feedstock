@@ -29,7 +29,12 @@ test:
     - jupyterlab_widgets
   commands:
     - pip check
+    - jupyter labextension list
+    - jupyter labextension list 1>labextensions 2>&1
+    - grep -iE "@jupyter-widgets/jupyterlab-manager.*OK" labextensions
   requires:
+    - m2-grep  # [win]
+    - jupyterlab
     - pip
 
 about:
