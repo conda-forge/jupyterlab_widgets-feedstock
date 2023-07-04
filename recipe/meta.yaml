@@ -1,4 +1,4 @@
-{% set version = "3.0.7" %}
+{% set version = "3.0.8" %}
 
 package:
   name: jupyterlab_widgets
@@ -6,21 +6,19 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-{{ version }}.tar.gz
-  sha256: c3a50ed5bf528a0c7a869096503af54702f86dda1db469aee1c92dc0c01b43ca
+  sha256: d428ab97b8d87cc7c54cbf37644d6e0f0e662f23876e05fa460a73ec3257252a
 build:
-  number: 1
+  number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
+    - jupyter-packaging
     - pip
     - python >=3.7
-    - jupyter-packaging
-
   run:
     - python >=3.7
-
   run_constrained:
     - jupyterlab >=3,<5
 
@@ -29,7 +27,12 @@ test:
     - jupyterlab_widgets
   commands:
     - pip check
+    - jupyter labextension list
+    - jupyter labextension list 1>labextensions 2>&1
+    - grep -iE "@jupyter-widgets/jupyterlab-manager.*OK" labextensions
   requires:
+    - jupyterlab
+    - m2-grep  # [win]
     - pip
 
 about:
