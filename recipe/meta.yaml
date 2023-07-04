@@ -14,13 +14,11 @@ build:
 
 requirements:
   host:
+    - jupyter-packaging
     - pip
     - python >=3.7
-    - jupyter-packaging
-
   run:
     - python >=3.7
-
   run_constrained:
     - jupyterlab >=3,<5
 
@@ -33,8 +31,8 @@ test:
     - jupyter labextension list 1>labextensions 2>&1
     - grep -iE "@jupyter-widgets/jupyterlab-manager.*OK" labextensions
   requires:
-    - m2-grep  # [win]
     - jupyterlab
+    - m2-grep  # [win]
     - pip
 
 about:
