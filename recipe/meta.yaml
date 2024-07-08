@@ -1,4 +1,4 @@
-{% set version = "1.1.7" %}
+{% set version = "1.1.8" %}
 
 package:
   name: jupyterlab_widgets
@@ -6,7 +6,8 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-{{ version }}.tar.gz
-  sha256: 318dab34267915d658e7b0dc57433ff0ce0d52b3e283986b73b66f7ab9017ae8
+  sha256: 3df97fed92fed52dd2e8de61d870eb692d3efcdb1b99ba7874ec738df97429f2
+
 build:
   number: 0
   noarch: python
