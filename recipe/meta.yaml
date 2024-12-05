@@ -5,10 +5,10 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-{{ version }}.tar.gz
   sha256: a2966d385328c1942b683a8cd96b89b8dd82c8b8f81dda902bb2bc06d46f5bed
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -16,9 +16,9 @@ requirements:
   host:
     - jupyter-packaging
     - pip
-    - python >=3.7
+    - python {{ python_min }}
   run:
-    - python >=3.7
+    - python >={{ python_min }}
   run_constrained:
     - jupyterlab >=3,<5
 
@@ -34,6 +34,7 @@ test:
     - jupyterlab
     - m2-grep  # [win]
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jupyter-widgets/ipywidgets
