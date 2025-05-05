@@ -14,9 +14,12 @@ build:
 
 requirements:
   host:
-    - jupyter-packaging
     - pip
     - python {{ python_min }}
+    - yarn
+    - jupyterlab =4
+    - hatchling
+    - hatch-jupyter-builder
   run:
     - python >={{ python_min }}
   run_constrained:
