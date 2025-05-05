@@ -27,7 +27,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterlab_widgets-green.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterlab__widgets-green.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) |
 
 Installing jupyterlab_widgets
 =============================
@@ -148,7 +148,4 @@ Feedstock Maintainers
 * [@jasongrout](https://github.com/jasongrout/)
 * [@jtpio](https://github.com/jtpio/)
 * [@martinRenou](https://github.com/martinRenou/)
-
-
-<!-- dummy commit to enable rerendering -->
 
