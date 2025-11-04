@@ -44,8 +44,8 @@ tests:
         - jupyterlab
         - python ${{ python_min }}.*
     script:
-      - jupyter labextension list
-      - jupyter labextension list 2>&1 | python -c "import sys, re; assert re.match(sys.stdin.read(), '@jupyter-widgets/jupyterlab-manager.*OK')"
+      - jupyter labextension list --debug
+      - jupyter labextension list --debug 2>&1 | python -c "import sys, re; assert re.search(r'@jupyter-widgets/jupyterlab-manager.*OK', sys.stdin.read())"
 
 about:
   summary: JupyterLab extension providing HTML widgets
