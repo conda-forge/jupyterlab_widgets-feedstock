@@ -10,13 +10,25 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-${{ version }}.tar.gz
-  sha256: 423da05071d55cf27a9e602216d35a3a65a3e41cdf9c5d3b643b814ce38c19e0
+  - if: version != "3.0.16"
+    then:
+      url: https://pypi.org/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-${{ version }}.tar.gz
+      sha256: 423da05071d55cf27a9e602216d35a3a65a3e41cdf9c5d3b643b814ce38c19e0
+    else:
+      url: https://github.com/jupyter-widgets/ipywidgets/archive/refs/tags/8.1.8.tar.gz
+      sha256: de496815106e4c0ae0450dc1662cead4cffa43689af359f72d6b4ce8c12f7a8f
 
 build:
   number: 1
   noarch: python
   script:
+    - if: version == "3.0.16"
+      then:
+        - jlpm
+        - jlpm build
+        - cd python/jupyterlab_widgets
+        - jlpm clean:all
+        - jlpm build:prod
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
@@ -44,8 +56,9 @@ tests:
         - jupyterlab
         - python ${{ python_min }}.*
     script:
-      - jupyter labextension list --debug
-      - jupyter labextension list --debug 2>&1 | python -c "import sys, re; assert re.search(r'@jupyter-widgets/jupyterlab-manager.*OK', sys.stdin.read())"
+      env:
+        JS_NAME: "@jupyter-widgets/jupyterlab-manager"
+      file: run_test.py
 
 about:
   summary: JupyterLab extension providing HTML widgets
