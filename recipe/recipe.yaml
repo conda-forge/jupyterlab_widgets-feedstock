@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "3.0.16"
+  python_check_max: "3.14"
+
+package:
+  name: jupyterlab_widgets
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-${{ version }}.tar.gz
+  sha256: 423da05071d55cf27a9e602216d35a3a65a3e41cdf9c5d3b643b814ce38c19e0
+
+build:
+  number: 1
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - hatch-jupyter-builder
+    - hatchling
+    - jupyterlab 4.*
+    - pip
+    - python ${{ python_min }}.*
+    - yarn
+  run:
+    - python >=${{ python_min }}
+  run_constraints:
+    - jupyterlab >=3,<5
+
+tests:
+  - python:
+      imports: jupyterlab_widgets
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - ${{ python_check_max }}.*
+  - requirements:
+      run:
+        - jupyterlab
+        - python ${{ python_min }}.*
+    script:
+      - jupyter labextension list
+      - jupyter labextension list 2>&1 | python -c "import sys, re; assert re.match(sys.stdin.read(), '@jupyter-widgets/jupyterlab-manager.*OK')"
+
+about:
+  summary: JupyterLab extension providing HTML widgets
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/jupyter-widgets/ipywidgets
+
+extra:
+  recipe-maintainers:
+    - jasongrout
+    - SylvainCorlay
+    - martinRenou
+    - jtpio
+    - bollwyvl
