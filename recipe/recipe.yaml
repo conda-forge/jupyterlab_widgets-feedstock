@@ -5,8 +5,8 @@ context:
   version: "3.0.16"
   python_check_max: "3.14"
 
-package:
-  name: jupyterlab_widgets
+recipe:
+  name: jupyterlab_widgets_split
   version: ${{ version }}
 
 source:
@@ -19,46 +19,88 @@ source:
       sha256: de496815106e4c0ae0450dc1662cead4cffa43689af359f72d6b4ce8c12f7a8f
 
 build:
-  number: 1
-  noarch: python
-  script:
-    - if: version == "3.0.16"
-      then:
-        - jlpm
-        - jlpm build
-        - cd python/jupyterlab_widgets
-        - jlpm clean:all
-        - jlpm build:prod
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+  number: 2
 
-requirements:
-  host:
-    - hatch-jupyter-builder
-    - hatchling
-    - jupyterlab 4.*
-    - pip
-    - python ${{ python_min }}.*
-    - yarn
-  run:
-    - python >=${{ python_min }}
-  run_constraints:
-    - jupyterlab >=3,<5
-
-tests:
-  - python:
-      imports: jupyterlab_widgets
-      pip_check: true
-      python_version:
-        - ${{ python_min }}.*
-        - ${{ python_check_max }}.*
-  - requirements:
-      run:
-        - jupyterlab
+# NOTE: This recipe builds the package twice (once per output).
+# When rattler-build's multi output cache feature becomes non-experimental or available on
+# conda-forge, this can be optimized to build once and split the files into multiple outputs.
+# See: https://rattler-build.prefix.dev/latest/multiple_output_cache/
+outputs:
+  - package:
+      name: jupyterlab_widgets_labextension
+    build:
+      noarch: generic
+      script:
+        - if: version == "3.0.16"
+          then:
+            - jlpm
+            - jlpm build
+            - cd python/jupyterlab_widgets
+            - jlpm clean:all
+            - jlpm build:prod
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      files:
+        - share/**/*
+    requirements:
+      host:
+        - hatch-jupyter-builder
+        - hatchling
+        - jupyterlab 4.*
+        - pip
         - python ${{ python_min }}.*
-    script:
-      env:
-        JS_NAME: "@jupyter-widgets/jupyterlab-manager"
-      file: run_test.py
+        - yarn
+      run_constraints:
+        - jupyterlab >=3,<5
+      ignore_run_exports:
+        from_package:
+          - python
+    tests:
+      - requirements:
+          run:
+            - jupyterlab
+        script:
+          env:
+            JS_NAME: "@jupyter-widgets/jupyterlab-manager"
+          file: run_test.py
+
+  - package:
+      name: jupyterlab_widgets
+    build:
+      noarch: python
+      script:
+        - if: version == "3.0.16"
+          then:
+            - jlpm
+            - jlpm build
+            - cd python/jupyterlab_widgets
+            - jlpm clean:all
+            - jlpm build:prod
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+      files:
+        include:
+          - "**/*"
+        exclude:
+          - share/**/*
+    requirements:
+      host:
+        - hatch-jupyter-builder
+        - hatchling
+        - jupyterlab 4.*
+        - pip
+        - python ${{ python_min }}.*
+        - yarn
+      run:
+        - ${{ pin_subpackage("jupyterlab_widgets_labextension", exact=True) }}
+        - python >=${{ python_min }}
+      run_constraints:
+        - jupyterlab >=3,<5
+    tests:
+      - python:
+          imports: jupyterlab_widgets
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
 
 about:
   summary: JupyterLab extension providing HTML widgets
