@@ -109,6 +109,7 @@ about:
   homepage: https://github.com/jupyter-widgets/ipywidgets
 
 extra:
+  feedstock-name: jupyterlab_widgets
   recipe-maintainers:
     - jasongrout
     - SylvainCorlay
