@@ -51,6 +51,7 @@ outputs:
         - yarn
       run_constraints:
         - jupyterlab >=3,<5
+        - ${{ pin_subpackage("jupyterlab_widgets", exact=True) }}
       ignore_run_exports:
         from_package:
           - python
@@ -90,7 +91,7 @@ outputs:
         - python ${{ python_min }}.*
         - yarn
       run:
-        - ${{ pin_subpackage("jupyterlab_widgets_labextension", exact=True) }}
+        - jupyterlab_widgets_labextension ==${{ version }}
         - python >=${{ python_min }}
       run_constraints:
         - jupyterlab >=3,<5
