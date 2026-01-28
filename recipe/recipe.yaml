@@ -39,10 +39,11 @@ requirements:
     - pip
     - python ${{ python_min }}.*
     - yarn
-  run:
-    - python >=${{ python_min }}
   run_constraints:
     - jupyterlab >=3,<5
+  ignore_run_exports:
+    by_name:
+      - python
 
 tests:
   - python:
