@@ -4,9 +4,12 @@ schema_version: 1
 context:
   version: "3.0.16"
   python_check_max: "3.14"
+  share: share/jupyter/labextensions
+  win_share: share\jupyter\labextensions
+  js_name: "@jupyter-widgets/jupyterlab-manager"
 
-package:
-  name: jupyterlab_widgets
+recipe:
+  name: jupyterlab_widgets-split
   version: ${{ version }}
 
 source:
@@ -21,44 +24,64 @@ source:
 build:
   number: 1
   noarch: python
-  script:
-    - if: version == "3.0.16"
-      then:
-        - jlpm
-        - jlpm build
-        - cd python/jupyterlab_widgets
-        - jlpm clean:all
-        - jlpm build:prod
-    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
-requirements:
-  host:
-    - hatch-jupyter-builder
-    - hatchling
-    - jupyterlab 4.*
-    - pip
-    - python ${{ python_min }}.*
-    - yarn
-  run:
-    - python >=${{ python_min }}
-  run_constraints:
-    - jupyterlab >=3,<5
-
-tests:
-  - python:
-      imports: jupyterlab_widgets
-      pip_check: true
-      python_version:
-        - ${{ python_min }}.*
-        - ${{ python_check_max }}.*
-  - requirements:
-      run:
-        - jupyterlab
+outputs:
+  - package:
+      name: jupyterlab_widgets
+    build:
+      noarch: python
+      script:
+        - if: version == "3.0.16"
+          then:
+            - jlpm
+            - jlpm build
+            - cd python/jupyterlab_widgets
+            - jlpm clean:all
+            - jlpm build:prod
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+    requirements:
+      host:
+        - hatch-jupyter-builder
+        - hatchling
+        - jupyterlab 4.*
+        - pip
         - python ${{ python_min }}.*
-    script:
-      env:
-        JS_NAME: "@jupyter-widgets/jupyterlab-manager"
-      file: run_test.py
+        - yarn
+      run:
+        - python >=${{ python_min }}
+      run_constraints:
+        - jupyterlab >=3,<5
+    tests:
+      - python:
+          imports: jupyterlab_widgets
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
+      - requirements:
+          run:
+            - jupyterlab
+            - python ${{ python_min }}.*
+        script:
+          env:
+            JS_NAME: ${{ js_name }}
+          file: run_test.py
+
+  - package:
+      name: jupyterlab_widgets-assets
+    build:
+      noarch: generic
+      script:
+        file: copy_assets.py
+    requirements:
+      build:
+        - ${{ pin_subpackage("jupyterlab_widgets", exact=True) }}
+      run_constraints:
+        - jupyterlab_widgets <0
+    tests:
+      - package_contents:
+          files:
+            - ${{ share }}/${{ js_name }}/package.json
 
 about:
   summary: JupyterLab extension providing HTML widgets
@@ -67,6 +90,7 @@ about:
   homepage: https://github.com/jupyter-widgets/ipywidgets
 
 extra:
+  feedstock-name: jupyterlab_widgets
   recipe-maintainers:
     - jasongrout
     - SylvainCorlay
