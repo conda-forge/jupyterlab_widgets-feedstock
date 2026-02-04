@@ -6,7 +6,7 @@ context:
   python_check_max: "3.14"
   share: share/jupyter/labextensions
   win_share: share\jupyter\labextensions
-  js_name: "@jupyter-widgets/jupyterlab-manager"
+  js_name: jupyter-widgets/jupyterlab-manager
 
 recipe:
   name: jupyterlab_widgets-split
@@ -64,7 +64,7 @@ outputs:
             - python ${{ python_min }}.*
         script:
           env:
-            JS_NAME: ${{ js_name }}
+            JS_NAME: '${{ "@" ~ js_name }}'
           file: run_test.py
 
   - package:
@@ -81,7 +81,7 @@ outputs:
     tests:
       - package_contents:
           files:
-            - ${{ share }}/${{ js_name }}/package.json
+            - ${{ share }}/@${{ js_name }}/package.json
 
 about:
   summary: JupyterLab extension providing HTML widgets
