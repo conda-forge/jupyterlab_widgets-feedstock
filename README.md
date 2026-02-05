@@ -3,11 +3,24 @@ About jupyterlab_widgets-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyterlab_widgets-feedstock/blob/main/LICENSE.txt)
 
+
+About jupyterlab_widgets
+------------------------
+
 Home: https://github.com/jupyter-widgets/ipywidgets
 
 Package license: BSD-3-Clause
 
 Summary: JupyterLab extension providing HTML widgets
+
+About jupyterlab_widgets-assets
+-------------------------------
+
+Home: https://github.com/jupyter-widgets/ipywidgets
+
+Package license: BSD-3-Clause
+
+Summary: JupyterLab extension providing HTML widgets (no python)
 
 Current build status
 ====================
