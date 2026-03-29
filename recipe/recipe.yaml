@@ -19,7 +19,7 @@ source:
       sha256: de496815106e4c0ae0450dc1662cead4cffa43689af359f72d6b4ce8c12f7a8f
 
 build:
-  number: 1
+  number: 2
   noarch: python
   script:
     - if: version == "3.0.16"
@@ -39,10 +39,11 @@ requirements:
     - pip
     - python ${{ python_min }}.*
     - yarn
-  run:
-    - python >=${{ python_min }}
   run_constraints:
     - jupyterlab >=3,<5
+  ignore_run_exports:
+    by_name:
+      - python
 
 tests:
   - python:
