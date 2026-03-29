@@ -3,11 +3,24 @@ About jupyterlab_widgets-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyterlab_widgets-feedstock/blob/main/LICENSE.txt)
 
+
+About jupyterlab_widgets
+------------------------
+
 Home: https://github.com/jupyter-widgets/ipywidgets
 
 Package license: BSD-3-Clause
 
 Summary: JupyterLab extension providing HTML widgets
+
+About jupyterlab_widgets-assets
+-------------------------------
+
+Home: https://github.com/jupyter-widgets/ipywidgets
+
+Package license: BSD-3-Clause
+
+Summary: JupyterLab extension providing HTML widgets (no python)
 
 Current build status
 ====================
@@ -28,6 +41,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterlab__widgets-green.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterlab__widgets--assets-green.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets-assets) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab_widgets-assets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets-assets) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab_widgets-assets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets-assets) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterlab_widgets-assets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets-assets) |
 
 Installing jupyterlab_widgets
 =============================
@@ -39,16 +53,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `jupyterlab_widgets` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `jupyterlab_widgets, jupyterlab_widgets-assets` can be installed with `conda`:
 
 ```
-conda install jupyterlab_widgets
+conda install jupyterlab_widgets jupyterlab_widgets-assets
 ```
 
 or with `mamba`:
 
 ```
-mamba install jupyterlab_widgets
+mamba install jupyterlab_widgets jupyterlab_widgets-assets
 ```
 
 It is possible to list all of the versions of `jupyterlab_widgets` available on your platform with `conda`:
