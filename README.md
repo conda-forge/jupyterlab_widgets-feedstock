@@ -28,6 +28,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterlab__widgets-green.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterlab_widgets.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-jupyterlab__widgets__labextension-green.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets_labextension) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab_widgets_labextension.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets_labextension) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab_widgets_labextension.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets_labextension) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/jupyterlab_widgets_labextension.svg)](https://anaconda.org/conda-forge/jupyterlab_widgets_labextension) |
 
 Installing jupyterlab_widgets
 =============================
@@ -39,16 +40,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `jupyterlab_widgets` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `jupyterlab_widgets, jupyterlab_widgets_labextension` can be installed with `conda`:
 
 ```
-conda install jupyterlab_widgets
+conda install jupyterlab_widgets jupyterlab_widgets_labextension
 ```
 
 or with `mamba`:
 
 ```
-mamba install jupyterlab_widgets
+mamba install jupyterlab_widgets jupyterlab_widgets_labextension
 ```
 
 It is possible to list all of the versions of `jupyterlab_widgets` available on your platform with `conda`:
