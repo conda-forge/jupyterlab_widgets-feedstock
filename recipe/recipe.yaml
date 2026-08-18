@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "3.0.16"
+  version: "3.0.17"
   python_check_max: "3.14"
 
 package:
@@ -10,25 +10,13 @@ package:
   version: ${{ version }}
 
 source:
-  - if: version != "3.0.16"
-    then:
-      url: https://pypi.org/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-${{ version }}.tar.gz
-      sha256: 423da05071d55cf27a9e602216d35a3a65a3e41cdf9c5d3b643b814ce38c19e0
-    else:
-      url: https://github.com/jupyter-widgets/ipywidgets/archive/refs/tags/8.1.8.tar.gz
-      sha256: de496815106e4c0ae0450dc1662cead4cffa43689af359f72d6b4ce8c12f7a8f
+  url: https://pypi.org/packages/source/j/jupyterlab_widgets/jupyterlab_widgets-${{ version }}.tar.gz
+  sha256: 6e61fe21ca8a66039180a5cc52a433e07279d2fee79c8be963e00d55193f17a8
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script:
-    - if: version == "3.0.16"
-      then:
-        - jlpm
-        - jlpm build
-        - cd python/jupyterlab_widgets
-        - jlpm clean:all
-        - jlpm build:prod
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
@@ -42,7 +30,7 @@ requirements:
   run:
     - python >=${{ python_min }}
   run_constraints:
-    - jupyterlab >=3,<5
+    - jupyterlab >=4,<5
 
 tests:
   - python:
